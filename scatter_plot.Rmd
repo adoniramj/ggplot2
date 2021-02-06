@@ -1,0 +1,70 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+```{r, echo=FALSE}
+packages <- c(
+  'ggplot2',
+  'ggrepel',
+  'patchwork',
+  'ggraph',
+  'dplyr',
+  'gganimate',
+  'gifski',
+  'ggforce',
+  'ggthemes',
+  'maps',
+  'sf',
+  'tidyr',
+  'concaveman',
+  'remotes'
+)
+
+#install.packages(packages)
+
+library(ggplot2)
+```
+```{r}
+data("faithful")
+ggplot(data = faithful, mapping = aes(x = eruptions, y = waiting)) +
+  geom_point()
+```
+```{r}
+data("faithful")
+ggplot(data = faithful) +
+  geom_point(mapping = aes(x = eruptions,
+                           y = waiting,
+                           colour = eruptions < 3)) # mapping color
+```
+```{r}
+ggplot(data = faithful) +
+  geom_point(mapping = aes(x = eruptions,
+                           y = waiting),
+                           color = "steelblue") # Setting color, notice that color is outside the aes function.
+# There is no legend because there is no mapping.
+```
+```{r}
+ggplot(data = faithful, mapping = aes(x = eruptions, y = waiting)) +
+  geom_density2d() +
+  geom_point()
+```
+```{r}
+ggplot(data = faithful, mapping = aes(x = eruptions, y = waiting)) +
+  geom_point() +
+  geom_density_2d()
+# What is the difference between this plot and the previous one? 
+```
+```{r}
+data(mtcar)
+ggplot(data = mtcars) +
+  geom_point(mapping = aes(x = hp, 
+                           y = mpg,
+                           colour =factor(cyl),
+                           shape = factor(cyl)),
+             size = 3.0,
+             alpha = 0.5 )
+```
+
+

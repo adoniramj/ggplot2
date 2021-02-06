@@ -1,0 +1,40 @@
+---
+title: "Histogram"
+output: html_notebook
+---
+
+```{r, echo=FALSE}
+packages <- c(
+  'ggplot2',
+  'ggrepel',
+  'patchwork',
+  'ggraph',
+  'dplyr',
+  'gganimate',
+  'gifski',
+  'ggforce',
+  'ggthemes',
+  'maps',
+  'sf',
+  'tidyr',
+  'concaveman',
+  'remotes'
+)
+
+#install.packages(packages)
+
+library(ggplot2)
+```
+
+```{r}
+data("faithful")
+ggplot(data = faithful) +
+  geom_histogram(mapping = aes(x = eruptions, fill = eruptions < 3.1),
+                 colour = "blue")
+```
+```{r}
+ggplot(data = faithful) +
+  geom_histogram(mapping = aes(x = eruptions, colour = eruptions < 3.2))
+# notice the legend
+```
+
