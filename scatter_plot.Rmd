@@ -57,6 +57,14 @@ ggplot(data = faithful, mapping = aes(x = eruptions, y = waiting)) +
 # What is the difference between this plot and the previous one? 
 ```
 ```{r}
+line_data <- lm(waiting ~ eruptions, data = faithful)
+ggplot(data = faithful, mapping = aes(x = eruptions, y = waiting)) +
+  geom_point() + 
+  geom_abline(slope = line_data$coefficients[2], intercept = line_data$coefficients[1], color = "red" )
+```
+
+
+```{r}
 data(mtcar)
 ggplot(data = mtcars) +
   geom_point(mapping = aes(x = hp, 
@@ -66,5 +74,6 @@ ggplot(data = mtcars) +
              size = 3.0,
              alpha = 0.5 )
 ```
+
 
 

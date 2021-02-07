@@ -1,0 +1,39 @@
+---
+title: "Bar chart"
+output: html_notebook
+---
+
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+data("mpg")
+ggplot(mpg) +
+  geom_bar(mapping = aes(x = class))
+```
+
+```{r}
+mpg_counted <- mpg %>%
+  count(class, name = "count")
+
+ggplot(data = mpg_counted) +
+  geom_bar(mapping = aes(x = class, y = count),
+           stat = 'identity')
+```
+
+```{r}
+ggplot(mpg_counted) +
+  geom_col(mapping = aes(x = class, y = count))
+```
+
+```{r}
+ggplot(data = mpg) +
+  geom_bar(mapping = aes(x = class,
+                         y = after_stat(100 * count / sum(count))
+                         )
+           ) +
+  ylab("Percentage of class data")
+```
+

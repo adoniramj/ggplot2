@@ -29,8 +29,9 @@ library(ggplot2)
 ```{r}
 data("faithful")
 ggplot(data = faithful) +
-  geom_histogram(mapping = aes(x = eruptions, fill = eruptions < 3.1),
-                 colour = "blue")
+  geom_histogram(mapping = aes(x = eruptions, fill = eruptions < 3.1)) +
+  xlab("Eruption duration in minutes") +
+  ylab("Number of eruptions")
 ```
 ```{r}
 ggplot(data = faithful) +
