@@ -24,6 +24,7 @@ packages <- c(
 
 #install.packages(packages)
 
+library(tidyverse)
 library(ggplot2)
 ```
 ```{r}
@@ -74,6 +75,32 @@ ggplot(data = mtcars) +
              size = 3.0,
              alpha = 0.5 )
 ```
+```{r r-plot}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy),
+             color = "red") +
+  geom_point(mapping = aes(x = displ, y = cty),
+             color = "blue",
+             alpha = 0.2)
+```
 
+```{r}
+ggplot(data = mpg) +
+  geom_point(mapping = aes(x = displ, y = hwy, color = class))
+```
+```{r}
+two_seater <- mpg %>%
+  filter(class == "2seater")
+all_except_two_seater <- mpg %>%
+  filter(class != "2seater")
+```
+
+```{r}
+ggplot() +
+  geom_point(data = all_except_two_seater, mapping = aes(x = displ, y = hwy)) +
+  geom_point(data = two_seater, mapping = aes(x = displ, y = hwy),
+             color = "red",
+             size = 2.0)
+```
 
 
