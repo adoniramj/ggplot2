@@ -2,6 +2,11 @@
 title: "Function plots"
 output: html_notebook
 ---
+```{r}
+#libraries
+library(ggplot2)
+```
+
 
 ```{r}
 # data for curves
@@ -33,5 +38,21 @@ ggplot(data = x) +
   stat_function(mapping = aes(x = x),
                 fun = dnorm)
 
+```
+
+```{r}
+# adding points to the x axis of a normal distribution
+df <- data.frame(c(-0.5, 0.5), c(0,0))
+colnames(df) <- c("x", "y")
+ggplot(data = x) +
+  stat_function(mapping = aes(x = x),
+                fun = dnorm) +
+  geom_point(data = df,
+            mapping = aes(x = x, y =y)) +
+  stat_function(fun = dnorm,
+                geom = "area",
+                fill = "steelblue",
+                xlim = c(-0.5, 0.5))
+  
 ```
 
